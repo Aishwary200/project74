@@ -37,7 +37,7 @@ export default class ReadScreen extends Component {
             search: ''
         }
     }
-    fetchMoreTransactions = async () => {
+    fetchMoreStory = async () => {
         var text = this.state.search
         var enteredText = text.split("")
         console.log(enteredText)
@@ -64,7 +64,7 @@ export default class ReadScreen extends Component {
             })
         })
     }
-    searchTransaction = async (text) => {
+    searchStory = async (text) => {
         var enteredText = text.split('')
         var text = text.toUpperCase()
         const transaction = await db.collection('stories').where('title', '==', text).get()
@@ -89,7 +89,7 @@ export default class ReadScreen extends Component {
                         })
                     }}></TextInput>
                     <TouchableOpacity style={styles.searchButton} onPress={() => {
-                        this.searchTransaction(this.state.search)
+                        this.searchStory(this.state.search)
                     }}><Text>Search</Text></TouchableOpacity>
                 </View>
                 <FlatList
@@ -102,7 +102,7 @@ export default class ReadScreen extends Component {
                         </View>
                     )}
                     keyExtractor={(item, index) => index.toString()}
-                    onEndReached={this.fetchMoreTransactions}
+                    onEndReached={this.fetchMoreStory}
                     onEndReachedThreshold={0.7}
                 />
             </View>
